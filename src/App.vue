@@ -3,6 +3,7 @@
     <img src="./assets/logo.png">
     <!-- <router-view/> -->
     <h3>我是vue的app页面</h3>
+    <h1>这个是music的分支2</h1>
   </div>
 </template>
 
