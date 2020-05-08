@@ -3,6 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+// const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   dev: {
@@ -10,7 +11,18 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      "/api": {
+        // http://tingapi.ting.baidu.com/resful/v1/restserver/ting...
+        target: "http://tingapi.ting.baidu.com",
+        changeOrigin: true,
+        // 通过这个属性配置，去掉/resful
+        // http://tingapi.ting.baidu.com/v1/restserver/ting...
+        pathRewrite: {
+            '^/api': ''
+        }
+    }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -41,6 +53,10 @@ module.exports = {
     cacheBusting: true,
 
     cssSourceMap: true
+    // plugins: [
+    //   new VueLoaderPlugin()
+    // ]
+
   },
 
   build: {

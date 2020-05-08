@@ -4,12 +4,19 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
+
 import Router from 'vue-router'
 Vue.use(Router)
 
 Vue.config.productionTip = false
 // 引入清除默认样式css
 import './assets/lib/base.css'
+// 引js
+// import './assets/lib/mui/js/mui.js'
 
 // 引入菜单
 import './assets/lib/mui/css/mui.min.css'

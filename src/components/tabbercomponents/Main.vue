@@ -1,16 +1,13 @@
 <template>
-  <div>
-   
-  </div>
+    <div>
+        <h3>这是我的页面</h3>
+    </div>
 </template>
 <script>
 export default {
-  name: "Mynav",
-  data() {
-    return {};
-  }
-};
+    
+}
 </script>
 <style scoped>
-
+    
 </style>
