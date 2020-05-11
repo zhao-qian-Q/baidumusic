@@ -8,6 +8,7 @@ import singerList from '../components/singercomponent/singerlist.vue'
 import search from '../components/tabbercomponents/Search.vue'
 import singinglist from '../components/tabbercomponents/Singinglist.vue'
 import main from '../components/tabbercomponents/Main.vue'
+import singerDetails from '../components/singercomponent/singerDetails.vue'
 let router = new Router({
   linkActiveClass: 'mui-active',
   routes: [
@@ -17,6 +18,8 @@ let router = new Router({
     {path:'/home/search',component:search},
     {path:'/home/singinglist',component:singinglist},
     {path:'/home/main',component:main},
+    {path:'/home/singerDetails/:tinguid',component:singerDetails},
+
 
 
   ]

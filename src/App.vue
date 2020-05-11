@@ -4,7 +4,11 @@
    <!-- 这是导航栏的组件 -->
      <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item" to="/home">
-      <img src="asssts/img/2.jpg" alt="">
+      <div class="logoBox">
+        <img src="./assets/img/logobaidu.png" alt="">
+
+      </div>
+      
       </router-link>
       <router-link class="mui-tab-item" to="/home/singerList">歌手</router-link>
       <router-link class="mui-tab-item" to="/home/singinglist">榜单</router-link>
@@ -41,4 +45,18 @@ export default {
   color: #999;
   border:none;
 }
+ .mui-bar-tab img {
+   width: 25px;
+   height: 25px;
+ }
+ .logoBox {
+  margin: auto;
+   background: rgb(81, 227, 247);
+   width: 25px;
+   height: 25px;
+   border-radius: 50%;
+ }
+ .mui-active {
+   color: red;
+ }
 </style>

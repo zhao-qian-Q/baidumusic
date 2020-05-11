@@ -3,10 +3,10 @@
     <div class="mui-scroll">
       <ul class="mui-table-view mui-table-view-chevron">
         <li class="mui-table-view-cell" v-for="item in singerlist" :key='item.ting_uid'>
-          <a href>
+          <router-link :to="'/home/singerDetails/'+item.ting_uid">
             <img :src="item.avatar_small" alt />&nbsp;&nbsp;
             <span>{{item.name}}</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
