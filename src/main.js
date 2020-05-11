@@ -27,6 +27,17 @@ Vue.component(TabItem.name, TabItem);
 
 
 
+// 引入vant
+// import Vue from 'vue';
+import { Swipe, SwipeItem,Tab, Tabs,NavBar,Icon } from 'vant';
+Vue.use(Swipe);
+Vue.use(SwipeItem);
+Vue.use(Tab);
+Vue.use(Tabs);
+Vue.use(NavBar);
+Vue.use(Icon);
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

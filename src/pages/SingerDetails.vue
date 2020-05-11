@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="singerbg" :style="{'background':'url('+singerDetail.artistinfo.avatar_big+')'}">
+    <div class="singerbg">
+      <div class="singbgImg" :style="{'background':'url('+singerDetail.artistinfo.avatar_big+')'}">
+
+      </div>
       <div class="singerimg">
         <img :src='singerDetail.artistinfo.avatar_middle' alt />
         <p>{{singerDetail.artistinfo.name}}</p>
@@ -8,10 +11,10 @@
     </div>
     <div class="mui-scroll">
       <ul class="mui-table-view mui-table-view-chevron">
-        <li class="mui-table-view-cell" v-for='item in singerDetail.songlist' :key='item.song_id'>
+        <router-link :to="'/home/songPlay/'+item.song_id" class="mui-table-view-cell" tag="li" v-for='item in singerDetail.songlist' :key='item.song_id'>
           <p>{{item.title}}</p>
 
-        </li>
+        </router-link>
       </ul>
     </div>
   </div>
@@ -21,9 +24,9 @@ export default {
   data() {
     return {
       tinguid: this.$route.params.tinguid,
-      singerDetail: {}
-      // back_img: this.singerDetail.avatar_big
-      // url_back_img: "url("+require('this.singerDetail.avatar_big')+")"
+      singerDetail: {
+        artistinfo:{}
+      }
     };
   },
   created() {
@@ -50,14 +53,12 @@ export default {
 .singerbg {
   width: 100%;
   height: 170px;
-  /* background-color: rgba(253, 239, 218,0.5); */
-  /* background-image: url('this.singerDetail.avatar_big'); */
-  /* backdrop-filter: blur(5px); */
-  /* -webkit-filter: blur(5px); 
-  filter: blur(5px); */
-  /* background-size: 100% 100%; */
-  /* background-attachment: fixed; */
-  /* background-color: cornsilk; */
+}
+.singbgImg {
+  width: 100%;
+  height: 170px;
+  filter: blur(6px);
+
 }
 .singerimg {
   width: 70px;
@@ -65,7 +66,7 @@ export default {
   border-radius: 50%;
   margin: auto;
   position: relative;
-  top: 20%;
+  top: -75%;
 }
 .singerimg img {
   width: 100%;

@@ -3,12 +3,14 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-import home from '../components/Home.vue';
-import singerList from '../components/singercomponent/singerlist.vue'
-import search from '../components/tabbercomponents/Search.vue'
-import singinglist from '../components/tabbercomponents/Singinglist.vue'
-import main from '../components/tabbercomponents/Main.vue'
-import singerDetails from '../components/singercomponent/singerDetails.vue'
+import home from '../pages/Home.vue';
+import singerList from '../pages/singerlist.vue'
+import search from '../pages/Search.vue'
+import singinglist from '../pages/Singinglist.vue'
+import main from '../pages/Main.vue'
+import singerDetails from '../pages/singerDetails.vue'
+import songsListDetail from '../pages/SongslistDetail.vue'
+import songPlay from '../pages/SongPlay.vue'
 let router = new Router({
   linkActiveClass: 'mui-active',
   routes: [
@@ -19,6 +21,8 @@ let router = new Router({
     {path:'/home/singinglist',component:singinglist},
     {path:'/home/main',component:main},
     {path:'/home/singerDetails/:tinguid',component:singerDetails},
+    {path:'/home/songsListDetail/:type',component:songsListDetail},
+    {path:'/home/songPlay/:songid',component:songPlay},
 
 
 
