@@ -11,6 +11,7 @@ import main from '../pages/Main.vue'
 import singerDetails from '../pages/singerDetails.vue'
 import songsListDetail from '../pages/SongslistDetail.vue'
 import songPlay from '../pages/SongPlay.vue'
+import homeMore from '../pages/HomeMore.vue'
 let router = new Router({
   linkActiveClass: 'mui-active',
   routes: [
@@ -23,6 +24,7 @@ let router = new Router({
     {path:'/home/singerDetails/:tinguid',component:singerDetails},
     {path:'/home/songsListDetail/:type',component:songsListDetail},
     {path:'/home/songPlay/:songid',component:songPlay},
+    {path:'/home/homeMore/:type/:title',component:homeMore},
 
 
 

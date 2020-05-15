@@ -13,6 +13,7 @@
   </div>
 </template>
 <script>
+import {getSingerList} from '../api/music'
 export default {
   data() {
     return {
@@ -21,24 +22,33 @@ export default {
     };
   },
   created() {
-    this.getlist();
+    // this.getlist();
+    this.singeridlist.forEach(element => {
+      getSingerList(element)
+       .then(res => {
+          // console.log(res);
+          this.singerlist.push(res)
+        })
+      .catch()
+      
+    });
   },
   methods: {
-    getlist() {
-      for(var i=0;i<this.singeridlist.length;i++){
-        this.$http
-        .get(
-          "/api/v1/restserver/ting?method=baidu.ting.artist.getInfo&tinguid="+this.singeridlist[i]
-        )
-        .then(res => {
-          console.log(res.data);
-          this.singerlist.push(res.data)
-        })
-        .catch();
+    // getlist() {
+    //   for(var i=0;i<this.singeridlist.length;i++){
+    //     this.$http
+    //     .get(
+    //       "/api/v1/restserver/ting?method=baidu.ting.artist.getInfo&tinguid="+this.singeridlist[i]
+    //     )
+    //     .then(res => {
+    //       // console.log(res.data);
+    //       this.singerlist.push(res.data)
+    //     })
+    //     .catch();
 
-      }
+    //   }
       
-    }
+    // }
   },
  
   components: {}

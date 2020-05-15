@@ -7,7 +7,11 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-Vue.use(VueAxios, axios)
+import http from './api/http'
+Vue.use(VueAxios, http)
+// Vue.use(http)
+// import Music from './api/music'
+// Vue.use(Music)
 
 import Router from 'vue-router'
 Vue.use(Router)
@@ -29,13 +33,18 @@ Vue.component(TabItem.name, TabItem);
 
 // 引入vant
 // import Vue from 'vue';
-import { Swipe, SwipeItem,Tab, Tabs,NavBar,Icon } from 'vant';
+import '@vant/touch-emulator';
+import { Swipe, SwipeItem,Tab, Tabs,NavBar,Icon,List,PullRefresh,Cell, CellGroup } from 'vant';
 Vue.use(Swipe);
 Vue.use(SwipeItem);
 Vue.use(Tab);
 Vue.use(Tabs);
 Vue.use(NavBar);
 Vue.use(Icon);
+Vue.use(List);//下拉刷新与下滑加载
+Vue.use(PullRefresh);//下拉刷新
+Vue.use(Cell);
+Vue.use(CellGroup);
 
 
 /* eslint-disable no-new */

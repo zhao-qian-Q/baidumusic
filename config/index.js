@@ -19,10 +19,40 @@ module.exports = {
         // 通过这个属性配置，去掉/resful
         // http://tingapi.ting.baidu.com/v1/restserver/ting...
         pathRewrite: {
-            '^/api': ''
+          '^/api': ''
         }
-    }
+      },
+      "/lrc": {
+        // 新接口地址
+        target: "http://musicapi.taihe.com",
+        changeOrigin: true,
+        pathRewrite: {
+          '^/lrc': ''
+        }
+
+      },
+      "/arc": {
+        // 新接口歌词地址地址
+        target: "http://music.taihe.com",
+        changeOrigin: true,
+        pathRewrite: {
+          '^/arc': ''
+        }
+
+      },
+      // "/prc": {
+      //   // 获取歌曲详情接口前缀
+      //   target: "http://music.taihe.com/data/tingapi/v1/restserver/ting",
+      //   changeOrigin: true,
+      //   // 通过这个属性配置，去掉/resful
+      //   // http://tingapi.ting.baidu.com/v1/restserver/ting...
+      //   pathRewrite: {
+      //     '^/prc': ''
+      //   }
+      //   // http://music.taihe.com/data/tingapi
+      // }
     },
+
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

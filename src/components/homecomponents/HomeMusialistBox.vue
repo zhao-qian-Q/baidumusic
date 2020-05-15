@@ -6,7 +6,7 @@
           <div class="mui-content">
             <div class="homelistTop">
               <span>{{title}}</span>
-              <a href >更多</a>
+              <router-link :to="'/home/homeMore/'+type+'/'+title" >更多</router-link>
             </div>
             <ul class="mui-table-view mui-grid-view">
               <router-link :to="'/home/songPlay/'+item.song_id" tag="li"
@@ -28,16 +28,13 @@
 </template>
 
 <script>
+import {getTodayMusicList} from '../../api/music.js'
 export default {
   // name: "home",
   data() {
     return {
       // 今日榜单
       HomeMusicList: {}
-      // newMusicCourier: "",
-      // type:'2',
-      // title:'今日榜单',
-      // size:'3'
     };
   },
   props: {
@@ -52,22 +49,27 @@ export default {
     size: { type: Number, default: 1 }
   },
   created() {
-    this.getTodayMusicList();
+    getTodayMusicList(this.type,this.size).then(
+      res => {
+          console.log(res.song_list)
+          this.HomeMusicList = res.song_list;
+      }
+    ).catch();
     // this.getnewMusicCourier();
     // console.log(this.type)
   },
   methods: {
-    getTodayMusicList() {
-      this.$http
-        .get(
-        "/api/v1/restserver/ting?method=baidu.ting.billboard.billList&type="+this.type+"&size="+this.size
-        )
-        .then(res => {
-          // console.log(res.data.song_list)
-          this.HomeMusicList = res.data.song_list;
-        })
-        .catch();
-    },
+    // getTodayMusicList() {
+    //   this.$http
+    //     .get(
+    //     "/api/v1/restserver/ting?method=baidu.ting.billboard.billList&type="+this.type+"&size="+this.size
+    //     )
+    //     .then(res => {
+    //       // console.log(res.data.song_list)
+    //       this.HomeMusicList = res.data.song_list;
+    //     })
+    //     .catch();
+    // },
     // homeMore(){
     //   this.size = 10
     // }

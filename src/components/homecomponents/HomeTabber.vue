@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import {getTodayMusicList} from '../../api/music'
 export default {
   data() {
     return {
@@ -23,22 +24,31 @@ export default {
   },
   props:['type'],
   created() {
-    this.getHomeTabberList();
+    // this.getHomeTabberList();
+    getTodayMusicList(this.type)
+    .then(
+      res => {
+          console.log(res.song_list)
+          this.homeTabberList = res.song_list
+      }
+       
+    )
+    .catch()
   },
   methods: {
-    getHomeTabberList() {
-      this.$http
-        .get(
-          "api/v1/restserver/ting?method=baidu.ting.billboard.billList&type=" +
-            this.type +
-            "&size=5"
-        )
-        .then(res => {
-          console.log(res.data.song_list);
-          this.homeTabberList = res.data.song_list
-        })
-        .catch();
-    }
+    // getHomeTabberList() {
+    //   this.$http
+    //     .get(
+    //       "api/v1/restserver/ting?method=baidu.ting.billboard.billList&type=" +
+    //         this.type +
+    //         "&size=5"
+    //     )
+    //     .then(res => {
+    //       // console.log(res.data.song_list);
+    //       // this.homeTabberList = res.data.song_list
+    //     })
+    //     .catch();
+    // }
   }
 };
 </script>

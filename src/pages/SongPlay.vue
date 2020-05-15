@@ -4,60 +4,68 @@
     <header id="header">
       <a class="mui-icon mui-icon-home mui-pull-left"></a>
       <p class="mui-title">
-        <span>{{songDetail.songinfo.title}}</span>
+        <span>{{songDetail.title}}</span>
         <br />
-        <span>{{songDetail.songinfo.author}}</span>
+        <span>{{songDetail.author}}</span>
       </p>
       <a class="mui-icon mui-icon-search mui-pull-right"></a>
     </header>
+
     <div class="bigBox">
+      <!-- 图片 -->
       <div class="songImg">
-        <img :src="songDetail.songinfo.pic_huge" alt />
+        <img :src="songDetail.pic_radio" alt />
       </div>
+      <!-- 歌词盒子 -->
       <div class="lyric">
-        <h3>我是一堆歌词啊</h3>
+        <lyricBox :lrclink="songDetail.lrclink" v-if='songDetail.lrclink'/>
       </div>
+      <!-- 操作盒子点赞，下载 -->
       <div class="lakeandDownload">
         <span class="mui-icon-extra mui-icon-extra-heart-filled"></span>
         <span class="mui-icon mui-icon-download mui-pull-right"></span>
       </div>
-      <div class="singPlay"></div>
+      <!-- 播放盒子 -->
+      <div class="singPlay">
+        <audio controls>
+          <source :src="fileLink.file_link" type="audio/mpeg"/>
+        </audio>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import LyricBox from "../components/songLyric/LyricComponent.vue";
+import { getMusicDetail } from "../api/music.js";
 export default {
   data() {
     return {
-      // songId: "672906443",
-      songDetail: {
-        songinfo: {}
-      }
+      songDetail: {},
+      songid: this.$route.params.songid,
+      fileLink: ""
     };
   },
   created() {
-    this.getsong();
+    // debugger
+    console.log(this.songid);
+    getMusicDetail(this.songid)
+      .then(result => {
+        console.log(result);
+        this.songDetail = result.songinfo;
+        this.fileLink = result.bitrate;
+      })
+      .catch();
   },
-  methods: {
-    getsong() {
-      this.$http
-        .get(
-          "/api/v1/restserver/ting?method=baidu.ting.song.play&songid=" +
-            this.$route.params.songid
-        )
-        .then(result => {
-          console.log(result.data);
-          this.songDetail = result.data;
-        })
-        .catch();
-    }
-  }
+  methods: {},
+  components: {
+    LyricBox
+  },
+  computed: {}
 };
 </script>
 <style scoped>
 .bigBox {
   width: 100%;
-  /* height: 200px; */
 }
 .songImg {
   width: 100%;
@@ -76,5 +84,16 @@ export default {
   background: #efeff4;
   padding: 10px;
   height: 100px;
+}
+.singPlay {
+  width: 100%;
+  height: 50px;
+  /* overflow: hidden; */
+  z-index: 11;
+}
+.lyric {
+  width: 70%;
+  height: 100px;
+  overflow: hidden;
 }
 </style>
