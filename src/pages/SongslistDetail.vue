@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="singerbg">
-      <img :src='billboard.pic_s444' alt />
+      <img :src='billboard.coverImgUrl' alt />
     </div>
     <div class="mui-scroll">
       <ul class="mui-table-view mui-table-view-chevron">

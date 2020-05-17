@@ -121,7 +121,7 @@ export default {
   padding: 5px;
   margin: 5px;
 } */
-.footer-img {
+/* .footer-img {
   padding: 0 10px;
-}
+} */
 </style>

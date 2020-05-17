@@ -40,17 +40,18 @@ module.exports = {
         }
 
       },
-      // "/prc": {
-      //   // 获取歌曲详情接口前缀
-      //   target: "http://music.taihe.com/data/tingapi/v1/restserver/ting",
-      //   changeOrigin: true,
-      //   // 通过这个属性配置，去掉/resful
-      //   // http://tingapi.ting.baidu.com/v1/restserver/ting...
-      //   pathRewrite: {
-      //     '^/prc': ''
-      //   }
-      //   // http://music.taihe.com/data/tingapi
-      // }
+      
+      "/wy-api": {
+        // 获取歌曲详情接口前缀
+        target: "http://59.111.92.205:8089",
+        changeOrigin: true,
+        // 通过这个属性配置，去掉/resful
+        // http://tingapi.ting.baidu.com/v1/restserver/ting...
+        pathRewrite: {
+          '^/wy-api': ''
+        }
+        // http://music.taihe.com/data/tingapi
+      }
     },
 
 

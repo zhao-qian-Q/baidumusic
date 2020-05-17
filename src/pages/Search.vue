@@ -1,40 +1,57 @@
 <template>
   <div>
+         <!-- <van-search v-model="nowQuery" placeholder="请输入搜索关键词" @search='searchDown(nowQuery)' /> -->
     <ul class="mui-table-view mui-table-view-chevron">
       <li class="mui-table-view-cell">
         <div class="searchBox">
-          <input type="text" value="输入搜索内容" v-model='query'/>
-          <button @click='search'>搜索</button>
+          <input type="text" value="输入搜索内容" v-model="nowQuery" />
+          <button @click="searchDown">搜索</button>
         </div>
       </li>
     </ul>
-  </div>
+    <!-- <div> -->
+ 
+      <div class="mui-content" v-if='nowQuery'>
+            <ul class="mui-table-view mui-grid-view">
+              <li v-for='item in searchResults.song' :key='item.songid' >
+                <!-- <a href="#"> -->
+                  <!-- <a href=""  v-for='item in searchResults.albume' :key='item.albumid'>
+                    <img class="mui-media-object" :src="item.artistpic" />
+
+                  </a> -->
+                  <p class="mui-media-body" >{{item.songname}}</p>
+              </li>
+            </ul>
+          </div>
+      <!-- {{searchResults}} -->
+    </div>
+  <!-- </div> -->
 </template>
 <script>
-import {search} from '../api/music'
+import { search } from "../api/music.js";
+// 引入搜索之后组件
+// import SearchRespons from '../components/homecomponents/HomeMusialistBox.vue'
 export default {
   data() {
     return {
-      // query:''
+      searchResults:'',
+      nowQuery:''
     };
   },
-  created(){
-    search(this.query)
-    .then(
-      res=>{
-        console.log(res)
-        console.log(this.query)
-        this.respones = res
-      }
-
-    )
-    .catch()
-
+  created() {
+    // debugger
   },
-  methods:{
-    search(){
-      console.log(this.respones)
-
+  methods: {
+    searchDown() {
+      // debugger
+      search(this.nowQuery)
+        .then(res => {
+          // debugger
+          console.log(res.song);
+          console.log(this.nowQuery);
+          this.searchResults = res;
+        })
+        .catch();
     }
   }
 };
@@ -56,5 +73,9 @@ ul {
   margin: 0;
   background: #999;
   border-radius: 0;
+}
+
+.mui-content {
+  padding: 15px;
 }
 </style>

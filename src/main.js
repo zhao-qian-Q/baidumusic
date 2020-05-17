@@ -34,7 +34,7 @@ Vue.component(TabItem.name, TabItem);
 // 引入vant
 // import Vue from 'vue';
 import '@vant/touch-emulator';
-import { Swipe, SwipeItem,Tab, Tabs,NavBar,Icon,List,PullRefresh,Cell, CellGroup } from 'vant';
+import { Swipe, SwipeItem,Tab, Tabs,NavBar,Icon,List,PullRefresh,Cell, CellGroup,Search } from 'vant';
 Vue.use(Swipe);
 Vue.use(SwipeItem);
 Vue.use(Tab);
@@ -45,6 +45,7 @@ Vue.use(List);//下拉刷新与下滑加载
 Vue.use(PullRefresh);//下拉刷新
 Vue.use(Cell);
 Vue.use(CellGroup);
+Vue.use(Search);
 
 
 /* eslint-disable no-new */

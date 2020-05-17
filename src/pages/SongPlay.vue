@@ -2,23 +2,23 @@
   <div>
     <!-- <h3>我是歌曲播放页</h3> -->
     <header id="header">
-      <a class="mui-icon mui-icon-home mui-pull-left"></a>
+      <router-link class="mui-icon mui-icon-home mui-pull-left" to='/home'></router-link>
       <p class="mui-title">
-        <span>{{songDetail.title}}</span>
+        <span>{{songinfo.name}}</span>
         <br />
-        <span>{{songDetail.author}}</span>
+        <span>{{songinfo.ar[0].name}}</span>
       </p>
-      <a class="mui-icon mui-icon-search mui-pull-right"></a>
+      <router-link class="mui-icon mui-icon-search mui-pull-right" to='/home/search'></router-link>
     </header>
 
     <div class="bigBox">
       <!-- 图片 -->
       <div class="songImg">
-        <img :src="songDetail.pic_radio" alt />
+        <img :src="songinfo.al.picUrl" alt />
       </div>
       <!-- 歌词盒子 -->
       <div class="lyric">
-        <lyricBox :lrclink="songDetail.lrclink" v-if='songDetail.lrclink'/>
+        <lyricBox :songid="this.$route.params.songid" v-if='this.$route.params.songid'/>
       </div>
       <!-- 操作盒子点赞，下载 -->
       <div class="lakeandDownload">
@@ -27,9 +27,10 @@
       </div>
       <!-- 播放盒子 -->
       <div class="singPlay">
-        <audio controls>
-          <source :src="fileLink.file_link" type="audio/mpeg"/>
-        </audio>
+        <!-- <audio controls>
+          <source controls :src="audioUrl" type="audio/mpeg" />
+        </audio> -->
+        <audio :src="audioUrl" controls="controls"></audio>
       </div>
     </div>
   </div>
@@ -37,24 +38,36 @@
 <script>
 import LyricBox from "../components/songLyric/LyricComponent.vue";
 import { getMusicDetail } from "../api/music.js";
+import { getSongPlay } from "../api/music.js";
 export default {
   data() {
     return {
-      songDetail: {},
+      songinfo: {
+        // name:'',
+        ar: [{ name }],
+        al: {}
+      },
       songid: this.$route.params.songid,
-      fileLink: ""
+      // fileLink: ""
+      audioUrl: ""
     };
   },
   created() {
     // debugger
-    console.log(this.songid);
+    // console.log(this.songid);
+    // 获取歌曲信息
     getMusicDetail(this.songid)
       .then(result => {
-        console.log(result);
-        this.songDetail = result.songinfo;
-        this.fileLink = result.bitrate;
+        // console.log(result.songs[0]);
+        this.songinfo = result.songs[0];
+        // this.fileLink = result.bitrate;
       })
       .catch();
+    //获取歌曲播放地址
+    getSongPlay(this.songid).then(res => {
+      // console.log(res.data[0]);
+      this.audioUrl = res.data[0].url;
+    });
   },
   methods: {},
   components: {
@@ -92,8 +105,8 @@ export default {
   z-index: 11;
 }
 .lyric {
-  width: 70%;
-  height: 100px;
+  width: 100%;
+  height: 120px;
   overflow: hidden;
 }
 </style>
